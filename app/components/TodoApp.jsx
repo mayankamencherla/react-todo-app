@@ -1,12 +1,12 @@
 var React = require('react');
 
-var Main = (props) => {
+var TodoApp = (props) => {
     return (
             <div>
-                <p>Main.jsx Rendered</p>
+                <p>TodoApp.jsx Rendered</p>
                 {props.children}
             </div>
     );
 }
 
-module.exports = Main;
+module.exports = TodoApp;
