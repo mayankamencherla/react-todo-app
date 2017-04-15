@@ -1,12 +1,41 @@
 var React = require('react');
 
-var TodoApp = (props) => {
-    return (
+var TodoList = require('TodoList');
+
+var TodoApp = React.createClass({
+    getInitialState: function() {
+        return {
+            todos: [
+                {
+                    id: 1,
+                    text: "Walk the dog"
+                },
+                {
+                    id: 2,
+                    text: "Clean the yard"
+                },
+                {
+                    id: 3,
+                    text: "Make a protein shake"
+                },
+                {
+                    id: 4,
+                    text: "Watch Andrew's lectures"
+                },
+            ],
+        };
+    },
+    render: function() {
+        var {todos} = this.state;
+
+        return (
             <div>
                 <p>TodoApp.jsx Rendered</p>
-                {props.children}
+                <TodoList todos={todos} />
+                {this.props.children}
             </div>
-    );
-}
+        );
+    }
+});
 
 module.exports = TodoApp;
