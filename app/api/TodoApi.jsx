@@ -34,6 +34,16 @@ module.exports = {
         });
 
         // sort and move incomplete todos to the top
+        // If a is not completed and b isn't, then a comes before b
+        filteredTodos.sort((todo1, todo2) => {
+            if (!todo1.completed && todo2.completed) {
+                return -1;
+            } else if (todo1.completed && !todo2.completed) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
 
         return filteredTodos;
     }
