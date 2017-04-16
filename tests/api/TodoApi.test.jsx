@@ -112,6 +112,7 @@ describe('TodoApi', () => {
 
         it('should place the completed item after the incomplete item', () => {
             var filteredTodos = TodoApi.filterTodos(todos, true, '');
+            expect(filteredTodos[0].completed).toBe(false);
             expect(filteredTodos[0].text).toBe(todos[1].text);
             expect(filteredTodos.length).toBe(todos.length);
         });
