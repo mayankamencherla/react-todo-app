@@ -12,14 +12,15 @@ describe('AddTodo', () => {
     });
 
     it('should call spy if valid todo entered', () => {
+        var todo = 'Walk the dog';
         var spy = expect.createSpy();
         var addTodo = TestUtils.renderIntoDocument(<AddTodo onNewTodo={spy} />);
         var $el = $(ReactDOM.findDOMNode(addTodo));
 
-        addTodo.refs.todo.value = 'Walk the dog';
+        addTodo.refs.todo.value = todo;
         TestUtils.Simulate.submit($el.find('form')[0]);
 
-        expect(spy).toHaveBeenCalledWith('Walk the dog');
+        expect(spy).toHaveBeenCalledWith(todo);
     });
 
     it('should not call spy if invalid todo entered', () => {
