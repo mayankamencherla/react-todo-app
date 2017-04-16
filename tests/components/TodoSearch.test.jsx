@@ -23,7 +23,16 @@ describe('TodoSearch', () => {
 
         TestUtils.Simulate.change(todoSearch.refs.searchText);
         TestUtils.Simulate.change(todoSearch.refs.showCompleted);
-        
         expect(spy).toHaveBeenCalledWith(searchText, showCompleted);
+
+        todoSearch.refs.showCompleted.checked = false;
+        TestUtils.Simulate.change(todoSearch.refs.showCompleted);
+        expect(spy).toHaveBeenCalledWith(searchText, false);
+
+        todoSearch.refs.searchText.value = "";
+        todoSearch.refs.showCompleted.checked = true;
+        TestUtils.Simulate.change(todoSearch.refs.searchText);
+        TestUtils.Simulate.change(todoSearch.refs.showCompleted);
+        expect(spy).toHaveBeenCalledWith("", true);
     });
 });
