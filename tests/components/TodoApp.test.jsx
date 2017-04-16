@@ -27,7 +27,9 @@ describe('TodoApp', () => {
         var todo = {
             id: 11,
             text: 'Test features',
-            completed: false
+            completed: false,
+            createdAt: 0, 
+            completedAt: undefined,
         };
 
         var todoApp = TestUtils.renderIntoDocument(<TodoApp />);
@@ -37,5 +39,9 @@ describe('TodoApp', () => {
         todoApp.handleToggle(11);
         expect(todoApp.state.todos[0].completed).toBe(true);
         expect(todoApp.state.todos[0].completedAt).toBeA('number');
+
+        todoApp.handleToggle(11);
+        expect(todoApp.state.todos[0].completed).toBe(false);
+        expect(todoApp.state.todos[0].completedAt).toBe(undefined);
     });
 });
