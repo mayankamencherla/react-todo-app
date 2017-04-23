@@ -17,7 +17,7 @@ $(document).foundation();
 require('!style!css!sass!applicationStyles');
 
 store.subscribe(() => {
-    var state = store.getState;
+    var state = store.getState();
     console.log('newState', state);
 
     TodoApi.setTodos(state.todos);
