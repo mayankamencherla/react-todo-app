@@ -16,15 +16,7 @@ $(document).foundation();
 // Load custom css
 require('!style!css!sass!applicationStyles');
 
-store.subscribe(() => {
-    var state = store.getState();
-    console.log('newState', state);
-
-    TodoApi.setTodos(state.todos);
-});
-
-var initialTodos = TodoApi.getTodos();
-store.dispatch(actions.addTodos(initialTodos));
+store.dispatch(actions.startAddTodos());
 
 ReactDOM.render(
         <Provider store={store}>

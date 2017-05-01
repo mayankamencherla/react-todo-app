@@ -1,5 +1,6 @@
 import firebase, {firebaseRef} from 'app/firebase/';
 import moment from 'moment';
+import _ from 'lodash';
 
 export var setSearchText = (searchText) => {
     return {
@@ -45,6 +46,26 @@ export var addTodos = (todos) => {
     return {
         type: 'ADD_TODOS',
         todos,
+    };
+};
+
+export var startAddTodos = () => {
+    return (dispatch, getState) => {
+        var todoRef = firebaseRef.child('todos');
+
+        return todoRef.once('value').then((snapshot) => {
+            var todos = snapshot.val() || {};
+            var parsedTodos = [];
+
+            Object.keys(todos).forEach((todoId) => {
+                parsedTodos.push({
+                    id: todoId,
+                    ...todos[todoId]
+                });
+            });
+
+            dispatch(addTodos(parsedTodos));
+        });
     };
 };
 
