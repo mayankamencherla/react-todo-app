@@ -6,9 +6,20 @@ var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 var TodoApi = require('TodoApi');
 import TodoApp from 'TodoApp';
 import Login from 'Login';
+import firebase from 'app/firebase/';
 
 var actions = require('actions');
 var store = require('configureStore').configure();
+
+// On login, go to todos
+// On logout, go to /
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        hashHistory.push('/todos');
+    } else {
+        hashHistory.push('/');
+    }   
+});
 
 // Load foundation
 require('style!css!foundation-sites/dist/foundation.min.css');
