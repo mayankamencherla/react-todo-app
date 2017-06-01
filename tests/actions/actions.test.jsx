@@ -150,6 +150,19 @@ describe('Actions', () => {
                 done();
             }, done);
         });
+
+        it('should generate login object', () => {
+            var uid = 12323232;
+
+            var action = actions.login(uid);
+            expect(action.type).toBe('LOGIN');
+            expect(action.uid).toBe(uid);
+        });
+
+        it('should generate logout object', () => {
+            var action = actions.logout();
+            expect(action.type).toBe('LOGOUT');
+        });
     });
 });
 

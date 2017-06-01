@@ -117,4 +117,29 @@ describe('Reducers', () => {
             expect(res).toEqual(todos);
         });
     });
+
+    describe('authReducer', () => {
+        it('should add auth object to state', () => {
+            var action = {
+                type: 'LOGIN',
+                uid: 13342343
+            };
+
+            var res = reducers.authReducer(undefined, df(action));
+            expect(res.uid).toEqual(action.uid);
+        });
+
+        it('should remove auth object from state', () => {
+            var action = {
+                type: 'LOGOUT'
+            };
+
+            var state = {
+                uid: 131232
+            };
+
+            var res = reducers.authReducer(df(state), df(action));
+            expect(res).toEqual({});
+        });
+    });
 });
